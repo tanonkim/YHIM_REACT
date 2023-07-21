@@ -1,0 +1,22 @@
+module.exports = {
+  singleQuote: true,
+  semi: true,
+  useTabs: false,
+  tabWidth: 2,
+  trailingComma: 'all',
+  printWidth: 80,
+  arrowParens: 'always',
+  orderedImports: true,
+  bracketSpacing: true,
+  jsxBracketSameLine: false,
+  importOrder: [
+    '^react/*',
+    '^react-router-dom/*',
+    '^styled-components/*',
+    '^[./]*',
+    '^utils/*',
+    '^styles/*',
+    '^types/*',
+  ],
+  importOrderSortSpecifiers: true,
+};
