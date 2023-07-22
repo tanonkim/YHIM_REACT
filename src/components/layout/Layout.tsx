@@ -1,3 +1,4 @@
+import Header from 'components/header/Header';
 import React from 'react';
 import { styled } from 'styled-components';
 import { flex } from 'styles';
@@ -5,7 +6,7 @@ import { flex } from 'styles';
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <Container>
-      {/* <Header /> */}
+      <Header />
       {children}
     </Container>
   );
