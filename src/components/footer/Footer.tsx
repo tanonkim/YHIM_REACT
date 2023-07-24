@@ -39,9 +39,10 @@ function Footer() {
 }
 
 const Container = styled.footer`
-  ${flex('', '', 'column')};
+  ${flex('', 'center', 'column')};
   position: fixed;
   bottom: 0;
+  width: 100%;
   padding: 20px 0;
   border-top: 1px solid ${colors.MEDIUMGRAY};
   z-index: 100;
