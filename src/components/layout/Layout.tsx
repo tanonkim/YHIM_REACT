@@ -1,6 +1,6 @@
 import Header from 'components/header/Header';
 import React from 'react';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { flex } from 'styles';
 
 function Layout() {
@@ -12,7 +12,8 @@ function Layout() {
 }
 
 const Container = styled.div`
-  ${flex('', '', 'column')}
+  ${flex('', 'center', 'column')};
+  height: 100vh;
 `;
 
 export default Layout;

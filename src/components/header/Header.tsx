@@ -3,15 +3,18 @@ import CenterMenu from './CenterMenu';
 import Logo from './Logo';
 import UserInfo from './UserInfo';
 import { colors, flex } from 'styles';
+import WrapperLayout from 'components/layout/WrapperLayout';
 
 function Header() {
   return (
     <Container>
-      <Contents>
-        <Logo />
-        <CenterMenu />
-        <UserInfo />
-      </Contents>
+      <WrapperLayout>
+        <Contents>
+          <Logo />
+          <CenterMenu />
+          <UserInfo />
+        </Contents>
+      </WrapperLayout>
     </Container>
   );
 }
