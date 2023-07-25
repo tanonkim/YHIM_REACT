@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { flex } from 'styles';
+import { colors, flex, font } from 'styles';
 import Category from './Category';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -55,6 +55,14 @@ function Main() {
                 <LikeImg alt="heart" src="../images/heart.png" />
                 <ProductImg alt="product" src={product.images[0]} />
               </ImageBox>
+              <InfoBox>
+                <Name>{product.room_name}</Name>
+                <Detail>{product.room_address}</Detail>
+                <Detail>{product.schedule}</Detail>
+                <Price>
+                  ₩{product.price.toLocaleString()} <span>/박</span>
+                </Price>
+              </InfoBox>
             </ProductInfo>
           ))}
         </ContentListWrapper>
@@ -113,6 +121,31 @@ const LikeImg = styled.img`
   right: 20px;
   width: 25px;
   height: 25px;
+`;
+
+const InfoBox = styled.div`
+  margin-top: 10px;
+  cursor: pointer;
+`;
+
+const Name = styled.div`
+  margin-top: 10px;
+  padding: 10px 0px 0px 0px;
+  ${font(20, 500)};
+  color: ${colors.BLACK};
+`;
+
+const Detail = styled.div`
+  padding: 7px 0px 10px 0px;
+  ${font(18, 500, 5)};
+  color: ${colors.GRAY};
+`;
+
+const Price = styled.div`
+  margin-top: 10px;
+  padding: 10px 0px 10px 0px;
+  ${font(20, 500)};
+  color: ${colors.BLACK};
 `;
 
 export default Main;
