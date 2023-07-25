@@ -6,18 +6,20 @@ interface ProductProps {
 }
 
 function ProductInfo({ product }: ProductProps) {
+  const { room_name, address, schedule, price, images } = product;
+
   return (
     <Conatiner>
       <ImageBox>
         <LikeImg alt="heart" src="../images/heart.png" />
-        <ProductImg alt="product" src={product.images[0]} />
+        <ProductImg alt="product" src={images[0]} />
       </ImageBox>
       <InfoBox>
-        <Name>{product.room_name}</Name>
-        <Detail>{product.address}</Detail>
-        <Detail>{product.schedule}</Detail>
+        <Name>{room_name}</Name>
+        <Detail>{address}</Detail>
+        <Detail>{schedule}</Detail>
         <Price>
-          ₩{product.price.toLocaleString()} <span>/박</span>
+          ₩{price.toLocaleString()} <span>/박</span>
         </Price>
       </InfoBox>
     </Conatiner>
