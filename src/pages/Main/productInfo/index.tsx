@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 
@@ -6,10 +7,15 @@ interface ProductProps {
 }
 
 function ProductInfo({ product }: ProductProps) {
-  const { room_name, address, schedule, price, images } = product;
+  const navigate = useNavigate();
+  const { room_name, address, schedule, price, images, room_id } = product;
+
+  const goDetailPage = () => {
+    navigate(`/rooms/${room_id}`);
+  };
 
   return (
-    <Conatiner>
+    <Conatiner onClick={goDetailPage}>
       <ImageBox>
         <LikeImg alt="heart" src="../images/heart.png" />
         <ProductImg alt="product" src={images[0]} />
