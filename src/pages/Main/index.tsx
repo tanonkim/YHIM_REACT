@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { flex } from 'styles';
 import Category from './Category';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 function Main() {
   const [productList, setProductList] = useState<any[]>([]);
@@ -24,6 +24,23 @@ function Main() {
   }, [offset, category]);
 
   useEffect(() => {}, [productList]); // mount
+
+  const handleScroll = useCallback((): void => {
+    const { innerHeight } = window;
+    const { scrollHeight } = document.body;
+    const { scrollTop } = document.documentElement;
+
+    if (Math.round(scrollTop + innerHeight) >= scrollHeight) {
+      setOffset((prevOffset: number) => prevOffset + 1);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, true);
+    return () => {
+      window.removeEventListener('scroll', handleScroll, true);
+    };
+  }, [productList]);
 
   return (
     <ListContainer>
