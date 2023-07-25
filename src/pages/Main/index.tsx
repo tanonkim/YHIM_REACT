@@ -1,18 +1,18 @@
 import styled from 'styled-components';
-import { colors, flex, font } from 'styles';
+import { flex } from 'styles';
 import Category from './Category';
 import { useCallback, useEffect, useState } from 'react';
 import ProductInfo from './productInfo';
 
 function Main() {
-  const [productList, setProductList] = useState<any[]>([]);
+  const [productList, setProductList] = useState<ProductType[]>([]);
   const [category, setCategory] = useState<number>();
   const [offset, setOffset] = useState<number>(0);
 
   useEffect(() => {}, [productList]);
 
   const uri =
-    category !== undefined && !(category === 0)
+    category !== undefined && !(category == 0)
       ? `${process.env.REACT_APP_API_ADDRESS}/rooms?category=${category}&page=0`
       : `${process.env.REACT_APP_API_ADDRESS}/rooms?page=0`;
 
@@ -46,7 +46,7 @@ function Main() {
   return (
     <ListContainer>
       <CategoryList>
-        <Category></Category>
+        <Category setCategory={setCategory} setOffset={setOffset} />
       </CategoryList>
       <ContentList>
         <ContentListWrapper>

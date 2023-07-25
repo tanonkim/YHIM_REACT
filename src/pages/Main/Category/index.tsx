@@ -2,14 +2,27 @@ import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import { CATEGORY_LIST } from './constants';
 
-function Category() {
+interface CategoryProps {
+  setCategory: (category: number) => void;
+  setOffset: (offset: number) => void;
+}
+
+type CategoryRoomFilterEvent = React.MouseEvent<HTMLElement>;
+
+function Category(props: CategoryProps) {
+  const handleCheck = (event: CategoryRoomFilterEvent) => {
+    const category = event.currentTarget.className.toString().slice(-1);
+    props.setCategory(parseInt(category));
+    props.setOffset(0);
+  };
+
   return (
     <CategoryList>
       {CATEGORY_LIST.map((category) => (
         <CategoryRoomFilter
           key={`${category.number}`}
           className={`${category.number}`}
-          // ToDo: onClick={handleCheck}
+          onClick={handleCheck}
         >
           <CategoryImage
             alt={category.name}
