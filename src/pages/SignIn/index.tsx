@@ -43,6 +43,11 @@ function SignIn() {
     }
   };
 
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setSignInData({ ...signInData, [name]: value });
+  };
+
   return (
     <Container>
       <Title>YHIM에 오신 것을 환영합니다.</Title>
@@ -53,7 +58,7 @@ function SignIn() {
           placeholder="예) YourHomeIsMine@yhim.com"
           className="email"
           name="email"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
         <SignInForm
           label="비밀번호"
@@ -61,7 +66,7 @@ function SignIn() {
           placeholder="영문 대소문자, 숫자, 특수문자를 포함하여 8자리 이상"
           className="password"
           name="password"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
       </TextList>
       <hr />

@@ -7,9 +7,9 @@ function SignInForm(props: {
   placeholder: string;
   className: string;
   name: string;
-  // onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) {
-  const { label, type, placeholder, className, name } = props;
+  const { label, type, placeholder, className, name, onChange } = props;
 
   return (
     <Container>
@@ -19,7 +19,7 @@ function SignInForm(props: {
         placeholder={placeholder}
         className={className}
         name={name}
-        // onChange={onChange}
+        onChange={onChange}
       />
     </Container>
   );
