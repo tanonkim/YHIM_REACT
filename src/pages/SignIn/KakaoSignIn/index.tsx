@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import { setAccessToken } from 'utils/jwt';
 
 declare global {
   interface Window {
@@ -23,7 +24,7 @@ function KakaoSignIn() {
         window.Kakao.API.request({
           url: '/v2/user/me',
         });
-        const res = fetch(
+        const res = await fetch(
           `${process.env.REACT_APP_API_ADDRESS}/users/login/kakao`,
           {
             method: 'GET',
@@ -32,6 +33,9 @@ function KakaoSignIn() {
             },
           },
         );
+
+        const { token: access_token } = await res.json();
+        setAccessToken(access_token);
       },
     });
   };
