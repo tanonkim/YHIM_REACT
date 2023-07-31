@@ -3,6 +3,7 @@ import { colors, flex, font } from 'styles';
 import SignInForm from './SignInForm';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import KakaoSignIn from './KakaoSignIn';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -73,6 +74,7 @@ function SignIn() {
       <SignUpBtn type="button" onClick={signIn}>
         로그인
       </SignUpBtn>
+      <KakaoSignIn />
     </Container>
   );
 }
