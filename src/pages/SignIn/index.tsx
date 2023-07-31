@@ -3,6 +3,8 @@ import { colors, flex, font } from 'styles';
 import SignInForm from './SignInForm';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import KakaoSignIn from './KakaoSignIn';
+import { setAccessToken } from 'utils/jwt';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ function SignIn() {
     }
     if (message === 'SUCCESS' && access_token) {
       alert('로그인에 성공했습니다. YHIM에 오신걸 환영합니다.');
+      setAccessToken(access_token);
       navigate('/');
     }
   };
@@ -73,6 +76,7 @@ function SignIn() {
       <SignUpBtn type="button" onClick={signIn}>
         로그인
       </SignUpBtn>
+      <KakaoSignIn />
     </Container>
   );
 }
