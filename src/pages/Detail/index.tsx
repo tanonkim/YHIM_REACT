@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProductImage from './ProductImage';
+import styled from 'styled-components';
+import { flex } from 'styles';
+import ProductInfo from './ProductInfo';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -43,10 +46,23 @@ function Detail() {
 
   return (
     <>
-      <Header detailList={detailList}></Header>
+      <Header detailList={detailList} />
       <ProductImage room_images_url={room_images_url} />
+      <Container>
+        <ProductContainer>
+          <ProductInfo detailList={detailList} />
+        </ProductContainer>
+      </Container>
     </>
   );
 }
+
+const Container = styled.div`
+  ${flex('', '')}
+`;
+
+const ProductContainer = styled.div`
+  margin-right: 20px;
+`;
 
 export default Detail;
