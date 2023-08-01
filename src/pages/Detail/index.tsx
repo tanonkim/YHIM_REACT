@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
+import ProductImage from './ProductImage';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -28,6 +29,8 @@ function Detail() {
     category: '',
   });
 
+  const { room_images_url } = detailList;
+
   const params = useParams();
 
   useEffect(() => {
@@ -37,9 +40,11 @@ function Detail() {
         setDetailList(data.message);
       });
   }, [params.id]);
+
   return (
     <>
       <Header detailList={detailList}></Header>
+      <ProductImage room_images_url={room_images_url} />
     </>
   );
 }
