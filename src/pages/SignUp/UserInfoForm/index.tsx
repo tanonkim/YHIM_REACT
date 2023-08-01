@@ -77,6 +77,7 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
           placeholder="예) 1993-11-02"
           name="birthDate"
           onChange={onChange}
+          value={birthDate}
         />
         <Button className={emailRegex.test(email) ? 'buttonOn' : 'button'}>
           O

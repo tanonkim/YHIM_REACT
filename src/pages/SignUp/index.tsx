@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import UserInfoForm from './UserInfoForm';
 import { useState } from 'react';
+import convertDate from 'utils/convertDate';
 
 function SignUp() {
   const [signUpInfo, setSignUpInfo] = useState({
@@ -14,7 +15,25 @@ function SignUp() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
+    if (name === 'birthDate') return handleBirthDate(value);
+
     setSignUpInfo({ ...signUpInfo, [name]: value });
+  };
+
+  const handleBirthDate = (value: string) => {
+    // early return 패턴, 아래 setSignUpInfo가 실행되지 않도록 막습니다.
+    if (value.length > 10) return;
+
+    // delete 키 입력을 고려해서 글자수가 더 줄어들 경우 value 그대로 저장
+    if (value.length < signUpInfo.birthDate.length) {
+      setSignUpInfo({ ...signUpInfo, birthDate: value });
+      return;
+    }
+
+    // handleBirth는 하이픈을 붙이는 기능
+    const converted = convertDate(value);
+    setSignUpInfo({ ...signUpInfo, birthDate: converted });
   };
 
   return (
