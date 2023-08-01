@@ -38,10 +38,6 @@ function SignUp() {
     setSignUpInfo({ ...signUpInfo, birthDate: converted });
   };
 
-  useEffect(() => {
-    console.log(signUpInfo.password);
-  }, [signUpInfo.password]);
-
   const signup = async () => {
     const res = await fetch(
       `${process.env.REACT_APP_API_ADDRESS}/users/signup`,
@@ -60,7 +56,6 @@ function SignUp() {
     );
 
     const { message } = await res.json();
-    console.log(message);
 
     if (message === 'User Created!') {
       alert('회원가입을 축하드립니다.');
