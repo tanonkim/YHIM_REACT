@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import UserInfoForm from './UserInfoForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import convertDate from 'utils/convertDate';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const [signUpInfo, setSignUpInfo] = useState({
     email: '',
     password: '',
@@ -35,6 +38,44 @@ function SignUp() {
     setSignUpInfo({ ...signUpInfo, birthDate: converted });
   };
 
+  useEffect(() => {
+    console.log(signUpInfo.password);
+  }, [signUpInfo.password]);
+
+  const signup = async () => {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_ADDRESS}/users/signup`,
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          email: signUpInfo.email,
+          password: signUpInfo.password,
+          nickname: signUpInfo.name,
+          birthdate: signUpInfo.birthDate,
+        }),
+      },
+    );
+
+    const { message } = await res.json();
+    console.log(message);
+
+    if (message === 'User Created!') {
+      alert('회원가입을 축하드립니다.');
+      navigate('/');
+    } else if (message === 'Invalid Email!') {
+      alert('이메일 조건에 밎지 않습니다!');
+    } else if (message === 'Invalid Password!') {
+      alert('비밀번호 조건에 맞지 않습니다!');
+    } else if (message === 'Email Already Exists!') {
+      alert('중복된 이메일입니다!');
+    } else if (message === 'KEY_ERROR') {
+      alert('정보를 모두 입력해주세요!');
+    }
+  };
+
   return (
     <Conatiner>
       <Header>회원가입 및 소셜로그인</Header>
@@ -42,7 +83,7 @@ function SignUp() {
       <fieldset>
         <UserInfoForm signUpInfo={signUpInfo} onChange={handleChange} />
       </fieldset>
-      <SignUpBtn>회원가입</SignUpBtn>
+      <SignUpBtn onClick={signup}>회원가입</SignUpBtn>
     </Conatiner>
   );
 }

@@ -45,7 +45,13 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
         onChange={onChange}
       >
         <Button
-          className={emailRegex.test(email) ? 'buttonOn' : 'button'}
+          className={
+            password === passwordCheck &&
+            password.length >= 8 &&
+            passwordRegex.test(password)
+              ? 'buttonOn'
+              : 'button'
+          }
           disabled
         >
           O
