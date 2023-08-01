@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors, font } from 'styles';
+import { emailRegex, passwordRegex } from 'utils/regex';
 
 interface UserInfoFormProps {
   signUpInfo: SignUpInfoType;
@@ -20,7 +21,12 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
           name="email"
           onChange={onChange}
         />
-        <Button>O</Button>
+        <Button
+          className={emailRegex.test(email) ? 'buttonOn' : 'button'}
+          disabled
+        >
+          O
+        </Button>
       </Conatiner>
       <Conatiner>
         <Label>비밀번호</Label>
@@ -31,7 +37,6 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
           name="password"
           onChange={onChange}
         />
-        <Button>O</Button>
       </Conatiner>
       <Conatiner>
         <Label>비밀번호 확인</Label>
@@ -42,7 +47,18 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
           name="passwordCheck"
           onChange={onChange}
         />
-        <Button>O</Button>
+        <Button
+          className={
+            passwordRegex.test(password) &&
+            password === passwordCheck &&
+            password.length >= 8
+              ? 'buttonOn'
+              : 'button'
+          }
+          disabled
+        >
+          O
+        </Button>
       </Conatiner>
       <Conatiner>
         <Label>이름</Label>
@@ -62,7 +78,9 @@ function UserInfoForm({ signUpInfo, onChange }: UserInfoFormProps) {
           name="birthDate"
           onChange={onChange}
         />
-        <Button>O</Button>
+        <Button className={emailRegex.test(email) ? 'buttonOn' : 'button'}>
+          O
+        </Button>
       </BirthConatiner>
     </>
   );
@@ -98,6 +116,18 @@ const InputForm = styled.input`
 
 const Button = styled.button`
   width: 60%;
+  margin: 0px 10px 0px 20px;
+  padding: 15px 15px;
+  border-radius: 10px;
+  cursor: default;
+
+  &.buttonOn {
+    background-color: ${colors.PINK};
+    color: ${colors.MEDIUMGRAY};
+  }
+  &.button {
+    background-color: ${colors.LIGHTGRAY};
+  }
 `;
 
 const BirthConatiner = styled.div`
