@@ -1,11 +1,29 @@
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import UserInfoForm from './UserInfoForm';
+import { useState } from 'react';
 
 function SignUp() {
+  const [signUpInfo, setSignUpInfo] = useState({
+    email: '',
+    password: '',
+    passwordCheck: '',
+    name: '',
+    birthDate: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSignUpInfo({ ...signUpInfo, [name]: value });
+  };
+
   return (
     <Conatiner>
       <Header>회원가입 및 소셜로그인</Header>
       <Title>YHIM에 오신 것을 환영합니다.</Title>
+      <fieldset>
+        <UserInfoForm signUpInfo={signUpInfo} onChange={handleChange} />
+      </fieldset>
       <SignUpBtn>회원가입</SignUpBtn>
     </Conatiner>
   );
