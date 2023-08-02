@@ -30,3 +30,9 @@ type AmenityType = {
 };
 
 type NoticeType = { room_rules: string; rules_icon_url: string };
+
+type HostDetailType = {
+  host_image: string;
+  host: string;
+  host_created: string;
+};
