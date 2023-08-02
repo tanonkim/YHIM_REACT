@@ -2,6 +2,11 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProductImage from './ProductImage';
+import styled from 'styled-components';
+import { colors, flex, font } from 'styles';
+import ProductInfo from './ProductInfo';
+import ProductAmenity from './ProductAmenity';
+import Notice from './ProductNotice';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -29,7 +34,8 @@ function Detail() {
     category: '',
   });
 
-  const { room_images_url } = detailList;
+  const { room_images_url, description, room_amenities, house_rules } =
+    detailList;
 
   const params = useParams();
 
@@ -43,10 +49,34 @@ function Detail() {
 
   return (
     <>
-      <Header detailList={detailList}></Header>
+      <Header detailList={detailList} />
       <ProductImage room_images_url={room_images_url} />
+      <Container>
+        <ProductContainer>
+          <ProductInfo detailList={detailList} />
+          <ProductDescription>{description}</ProductDescription>
+          <ProductAmenity room_amenities={room_amenities} />
+          <Notice noticeList={house_rules} />
+        </ProductContainer>
+      </Container>
     </>
   );
 }
+
+const Container = styled.div`
+  ${flex('', '')}
+`;
+
+const ProductContainer = styled.div`
+  margin-right: 20px;
+`;
+
+const ProductDescription = styled.div`
+  width: 960px;
+  padding: 40px 0;
+  border-bottom: 1px solid ${colors.MEDIUMGRAY};
+  ${font(18, 500, 25)};
+  color: ${colors.BLACK};
+`;
 
 export default Detail;
