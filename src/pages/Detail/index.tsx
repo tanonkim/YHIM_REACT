@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProductImage from './ProductImage';
 import styled from 'styled-components';
-import { flex } from 'styles';
+import { colors, flex, font } from 'styles';
 import ProductInfo from './ProductInfo';
 
 function Detail() {
@@ -32,7 +32,7 @@ function Detail() {
     category: '',
   });
 
-  const { room_images_url } = detailList;
+  const { room_images_url, description } = detailList;
 
   const params = useParams();
 
@@ -51,6 +51,7 @@ function Detail() {
       <Container>
         <ProductContainer>
           <ProductInfo detailList={detailList} />
+          <ProductDescription>{description}</ProductDescription>
         </ProductContainer>
       </Container>
     </>
@@ -63,6 +64,14 @@ const Container = styled.div`
 
 const ProductContainer = styled.div`
   margin-right: 20px;
+`;
+
+const ProductDescription = styled.div`
+  width: 960px;
+  padding: 40px 0;
+  border-bottom: 1px solid ${colors.MEDIUMGRAY};
+  ${font(18, 500, 25)};
+  color: ${colors.BLACK};
 `;
 
 export default Detail;
