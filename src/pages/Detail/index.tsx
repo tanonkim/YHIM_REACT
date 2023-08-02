@@ -5,6 +5,7 @@ import ProductImage from './ProductImage';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import ProductInfo from './ProductInfo';
+import ProductAmenity from './ProductAmenity';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -32,7 +33,7 @@ function Detail() {
     category: '',
   });
 
-  const { room_images_url, description } = detailList;
+  const { room_images_url, description, room_amenities } = detailList;
 
   const params = useParams();
 
@@ -52,6 +53,7 @@ function Detail() {
         <ProductContainer>
           <ProductInfo detailList={detailList} />
           <ProductDescription>{description}</ProductDescription>
+          <ProductAmenity room_amenities={room_amenities} />
         </ProductContainer>
       </Container>
     </>
