@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import AmenityItem from './AmenityItem';
 
 interface ProductAmenityProps {
   room_amenities: AmenityType[];
@@ -9,11 +10,8 @@ function ProductAmenity({ room_amenities }: ProductAmenityProps) {
   return (
     <Container>
       <Title>숙소 편의시설</Title>
-      {room_amenities.slice(0, 10).map((data, i) => (
-        <AmenityItem key={`amenity-${i}}`}>
-          <AmenityIcon alt={data.amenity_name} src={data.amenity_icon_url} />
-          <AmenityName>{data.amenity_name}</AmenityName>
-        </AmenityItem>
+      {room_amenities.slice(0, 10).map((data) => (
+        <AmenityItem key={data.amenity_id} data={data}></AmenityItem>
       ))}
       <TotalListBtn>편의시설 45개 모두 보기</TotalListBtn>
     </Container>
@@ -31,23 +29,6 @@ const Title = styled.div`
   padding: 10px 0px 10px 0px;
   margin: 20px 0px 20px 0px;
   ${font(20, 500)};
-`;
-
-const AmenityItem = styled.div`
-  ${flex('', 'center')}
-  width: 100%;
-  padding-bottom: 16px;
-`;
-
-const AmenityIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-right: 15px;
-`;
-
-const AmenityName = styled.p`
-  margin-top: 4px;
-  ${font(18, 500)};
 `;
 
 const TotalListBtn = styled.button`
