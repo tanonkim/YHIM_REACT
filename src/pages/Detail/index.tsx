@@ -8,6 +8,7 @@ import ProductInfo from './ProductInfo';
 import ProductAmenity from './ProductAmenity';
 import Notice from './ProductNotice';
 import Map from './ProductMap';
+import HostDetailInfo from './ProductHostInfo';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -61,6 +62,7 @@ function Detail() {
         </ProductContainer>
       </Container>
       <Map detailList={detailList} />
+      <HostDetailInfo detailList={detailList} />
     </>
   );
 }
