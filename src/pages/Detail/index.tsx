@@ -7,6 +7,7 @@ import { colors, flex, font } from 'styles';
 import ProductInfo from './ProductInfo';
 import ProductAmenity from './ProductAmenity';
 import Notice from './ProductNotice';
+import Map from './ProductMap';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -59,6 +60,7 @@ function Detail() {
           <Notice noticeList={house_rules} />
         </ProductContainer>
       </Container>
+      <Map detailList={detailList} />
     </>
   );
 }
