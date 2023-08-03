@@ -32,6 +32,7 @@ function Reservation({ netPrice }: ReservationProps) {
         <Calendar setDate={setDate} />
         <PersonOption />
         <ReservationBtn>예약하기</ReservationBtn>
+        <Price netPrice={netPrice} date={date} />
       </ContainerWrapper>
     </Container>
   );
