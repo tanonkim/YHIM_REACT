@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import CountClient from './CountClient';
@@ -11,6 +11,10 @@ function PersonOption() {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    setGuest(guest);
+  }, [guest]);
+
   return (
     <>
       <div>
@@ -21,7 +25,7 @@ function PersonOption() {
       <Container onClick={openModal}>
         <div>
           <Count>인원</Count>
-          <Guest>게스트 1명</Guest>
+          <Guest>게스트 {guest}명</Guest>
         </div>
         <PersonIcon
           alt="arrow"

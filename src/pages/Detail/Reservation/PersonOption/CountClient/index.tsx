@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 
@@ -14,6 +14,14 @@ function CountClient({ setGuest, setIsOpen }: CountClientProps) {
     baby: 0,
     pet: 0,
   });
+
+  const [sum, setSum] = useState<number>(1);
+  const clientSum = count.adult + count.child + count.baby + count.pet;
+
+  useEffect(() => {
+    setSum(clientSum);
+    setGuest(sum);
+  }, [sum, clientSum]);
 
   const countDown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const inputValue = parseInt(e.currentTarget.value);
