@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import Calendar from './Calender';
 import PersonOption from './PersonOption';
+import Price from './Price';
 
 interface ReservationProps {
-  data: number;
+  netPrice: number;
 }
 
-function Reservation({ data }: ReservationProps) {
+function Reservation({ netPrice }: ReservationProps) {
   const [date, setDate] = useState<number>(1);
 
   return (
@@ -17,7 +18,7 @@ function Reservation({ data }: ReservationProps) {
         <div>
           <ReservationOptionInfo>
             <PriceInfo>
-              ₩{data.toLocaleString()} <span>/박</span>
+              ₩{netPrice.toLocaleString()} <span>/박</span>
             </PriceInfo>
             <Review>
               <ReviewIcon
@@ -31,6 +32,7 @@ function Reservation({ data }: ReservationProps) {
         <Calendar setDate={setDate} />
         <PersonOption />
         <ReservationBtn>예약하기</ReservationBtn>
+        <Price netPrice={netPrice} date={date} />
       </ContainerWrapper>
     </Container>
   );
