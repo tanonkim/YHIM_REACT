@@ -32,9 +32,9 @@ function Calendar({ setDate }: CalendarProps) {
         <DateTitle>체크아웃</DateTitle>
         <DatePicker
           selected={endDate}
-          onChange={(date: Date | null) => setStartDate(date)}
+          onChange={(date: Date | null) => setEndDate(date)}
           startDate={subDays(new Date(), -1)}
-          minDate={new Date()}
+          minDate={startDate}
           locale={ko}
           showPopperArrow={false}
           dateFormat="yyyy.MM.dd (eee)"
