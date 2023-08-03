@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { subDays } from 'date-fns';
 import { ko } from 'date-fns/esm/locale';
@@ -8,12 +8,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './calendar.css';
 
 interface CalendarProps {
-  setDate: (date: number) => void;
+  setDate: Function;
 }
 
 function Calendar({ setDate }: CalendarProps) {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [totalDate, setTotalDate] = useState(1);
+
+  useEffect(() => {
+    if (startDate !== null && endDate !== null) {
+      const date = endDate.getTime() - startDate.getTime();
+      setTotalDate(setDate(Math.ceil(date / 86400000)));
+      setStartDate(startDate);
+      setEndDate(endDate);
+    }
+  }, [startDate, endDate]);
 
   return (
     <Container>
