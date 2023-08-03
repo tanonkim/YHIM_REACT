@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import Calendar from './Calender';
+import PersonOption from './PersonOption';
 
 interface ReservationProps {
   data: number;
@@ -28,6 +29,7 @@ function Reservation({ data }: ReservationProps) {
           </ReservationOptionInfo>
         </div>
         <Calendar setDate={setDate} />
+        <PersonOption />
       </ContainerWrapper>
     </Container>
   );
