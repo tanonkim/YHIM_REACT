@@ -62,7 +62,7 @@ function Detail() {
           <Notice noticeList={house_rules} />
         </ProductContainer>
         <ReservationContainer>
-          <Reservation data={price} />
+          <Reservation netPrice={price} />
         </ReservationContainer>
       </Container>
       <Map detailList={detailList} />
