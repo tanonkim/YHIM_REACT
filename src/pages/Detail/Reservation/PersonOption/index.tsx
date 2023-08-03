@@ -1,18 +1,30 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import CountClient from './CountClient';
 
 function PersonOption() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [guest, setGuest] = useState(1);
+
+  const openModal = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <Container>
-      <div>
-        <Count>인원</Count>
-        <Guest>게스트 1명</Guest>
-      </div>
-      <PersonIcon
-        alt="arrow"
-        src="https://cdn-icons-png.flaticon.com/512/2985/2985150.png"
-      />
-    </Container>
+    <>
+      <div> {isOpen ? <CountClient setGuest={setGuest} /> : null} </div>
+      <Container onClick={openModal}>
+        <div>
+          <Count>인원</Count>
+          <Guest>게스트 1명</Guest>
+        </div>
+        <PersonIcon
+          alt="arrow"
+          src="https://cdn-icons-png.flaticon.com/512/2985/2985150.png"
+        />
+      </Container>
+    </>
   );
 }
 
