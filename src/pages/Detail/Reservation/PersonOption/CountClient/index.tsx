@@ -4,9 +4,10 @@ import { colors, flex, font } from 'styles';
 
 interface CountClientProps {
   setGuest: (guest: number) => void;
+  setIsOpen: (isOpen: false) => void;
 }
 
-function CountClient({ setGuest }: CountClientProps) {
+function CountClient({ setGuest, setIsOpen }: CountClientProps) {
   const [count, setCount] = useState({
     adult: 1,
     child: 0,
@@ -38,6 +39,10 @@ function CountClient({ setGuest }: CountClientProps) {
     } else {
       e.currentTarget.value = '10';
     }
+  };
+
+  const openModal = () => {
+    setIsOpen(!setIsOpen);
   };
 
   return (
@@ -149,7 +154,7 @@ function CountClient({ setGuest }: CountClientProps) {
           이 숙소의 최대 숙박 인원은 4명(유아 포함)입니다. 반려동물 동반은
           허용되지 않습니다.
         </Notice>
-        <Exit>닫기</Exit>
+        <Exit onClick={openModal}>닫기</Exit>
       </ContainerWrapper>
     </Container>
   );

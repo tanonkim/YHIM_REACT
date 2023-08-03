@@ -13,7 +13,11 @@ function PersonOption() {
 
   return (
     <>
-      <div> {isOpen ? <CountClient setGuest={setGuest} /> : null} </div>
+      <div>
+        {isOpen ? (
+          <CountClient setGuest={setGuest} setIsOpen={setIsOpen} />
+        ) : null}
+      </div>
       <Container onClick={openModal}>
         <div>
           <Count>인원</Count>
