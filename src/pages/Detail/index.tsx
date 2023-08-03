@@ -9,6 +9,7 @@ import ProductAmenity from './ProductAmenity';
 import Notice from './ProductNotice';
 import Map from './ProductMap';
 import HostDetailInfo from './ProductHostInfo';
+import Reservation from './Reservation';
 
 function Detail() {
   const [detailList, setDetailList] = useState<ProductDetailType>({
@@ -36,7 +37,7 @@ function Detail() {
     category: '',
   });
 
-  const { room_images_url, description, room_amenities, house_rules } =
+  const { room_images_url, description, room_amenities, house_rules, price } =
     detailList;
 
   const params = useParams();
@@ -60,6 +61,9 @@ function Detail() {
           <ProductAmenity room_amenities={room_amenities} />
           <Notice noticeList={house_rules} />
         </ProductContainer>
+        <ReservationContainer>
+          <Reservation data={price} />
+        </ReservationContainer>
       </Container>
       <Map detailList={detailList} />
       <HostDetailInfo detailList={detailList} />
@@ -81,6 +85,10 @@ const ProductDescription = styled.div`
   border-bottom: 1px solid ${colors.MEDIUMGRAY};
   ${font(18, 500, 25)};
   color: ${colors.BLACK};
+`;
+
+const ReservationContainer = styled.div`
+  margin-left: 20px;
 `;
 
 export default Detail;
