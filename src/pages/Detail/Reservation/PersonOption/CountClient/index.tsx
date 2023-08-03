@@ -14,6 +14,32 @@ function CountClient({ setGuest }: CountClientProps) {
     pet: 0,
   });
 
+  const countDown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const inputValue = parseInt(e.currentTarget.value);
+
+    if (!isNaN(inputValue) && inputValue > 1) {
+      setCount({
+        ...count,
+        [e.currentTarget.name]: parseInt(e.currentTarget.value) - 1,
+      });
+    } else {
+      e.currentTarget.value = '1';
+    }
+  };
+
+  const countUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const inputValue = parseInt(e.currentTarget.value);
+
+    if (!isNaN(inputValue) && inputValue < 10) {
+      setCount({
+        ...count,
+        [e.currentTarget.name]: parseInt(e.currentTarget.value) + 1,
+      });
+    } else {
+      e.currentTarget.value = '10';
+    }
+  };
+
   return (
     <Container>
       <ContainerWrapper>
@@ -24,11 +50,21 @@ function CountClient({ setGuest }: CountClientProps) {
               <div>만 13세 이상</div>
             </div>
             <BtnContainer>
-              <Button name="adult" type="button">
+              <Button
+                name="adult"
+                type="button"
+                onClick={countDown}
+                value={count.adult}
+              >
                 -
               </Button>
               <Count>{count.adult}</Count>
-              <Button name="adult" type="button">
+              <Button
+                name="adult"
+                type="button"
+                onClick={countUp}
+                value={count.adult}
+              >
                 +
               </Button>
             </BtnContainer>
@@ -39,11 +75,21 @@ function CountClient({ setGuest }: CountClientProps) {
               <div>만 2~12세</div>
             </div>
             <BtnContainer>
-              <Button name="child" type="button">
+              <Button
+                name="child"
+                type="button"
+                onClick={countDown}
+                value={count.child}
+              >
                 -
               </Button>
               <Count>{count.child}</Count>
-              <Button name="child" type="button">
+              <Button
+                name="child"
+                type="button"
+                onClick={countUp}
+                value={count.child}
+              >
                 +
               </Button>
             </BtnContainer>
@@ -54,11 +100,21 @@ function CountClient({ setGuest }: CountClientProps) {
               <div>만 2세 미만</div>
             </div>
             <BtnContainer>
-              <Button name="baby" type="button">
+              <Button
+                name="baby"
+                type="button"
+                onClick={countDown}
+                value={count.baby}
+              >
                 -
               </Button>
               <Count>{count.baby}</Count>
-              <Button name="baby" type="button">
+              <Button
+                name="baby"
+                type="button"
+                onClick={countUp}
+                value={count.baby}
+              >
                 +
               </Button>
             </BtnContainer>
@@ -69,11 +125,21 @@ function CountClient({ setGuest }: CountClientProps) {
               <div>반려동물을 동반하시나요?</div>
             </div>
             <BtnContainer>
-              <Button name="pet" type="button">
+              <Button
+                name="pet"
+                type="button"
+                onClick={countDown}
+                value={count.pet}
+              >
                 -
               </Button>
               <Count>{count.pet}</Count>
-              <Button name="pet" type="button">
+              <Button
+                name="pet"
+                type="button"
+                onClick={countUp}
+                value={count.pet}
+              >
                 +
               </Button>
             </BtnContainer>
