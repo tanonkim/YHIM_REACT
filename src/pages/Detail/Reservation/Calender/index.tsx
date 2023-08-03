@@ -4,6 +4,8 @@ import { subDays } from 'date-fns';
 import { ko } from 'date-fns/esm/locale';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import 'react-datepicker/dist/react-datepicker.css';
+import './calendar.css';
 
 interface CalendarProps {
   setDate: (date: number) => void;
@@ -31,14 +33,19 @@ function Calendar({ setDate }: CalendarProps) {
       <DateContainer>
         <DateTitle>체크아웃</DateTitle>
         <DatePicker
-          selected={endDate}
+          selected={
+            new Date().getMonth() === endDate?.getMonth() &&
+            new Date().getDate() === endDate?.getDate()
+              ? subDays(new Date(), -1)
+              : endDate
+          }
           onChange={(date: Date | null) => setEndDate(date)}
           startDate={subDays(new Date(), -1)}
-          minDate={startDate}
+          minDate={subDays(new Date(), -1)}
           locale={ko}
           showPopperArrow={false}
           dateFormat="yyyy.MM.dd (eee)"
-          dateFormatCalendar={'yyyy년 MM월'}
+          dateFormatCalendar="yyyy년 MM월"
         />
       </DateContainer>
     </Container>
