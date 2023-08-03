@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
+import Calendar from './Calender';
 
 interface ReservationProps {
   data: number;
 }
 
 function Reservation({ data }: ReservationProps) {
+  const [date, setDate] = useState<number>(1);
+
   return (
     <Container>
       <ContainerWrapper>
@@ -23,6 +27,7 @@ function Reservation({ data }: ReservationProps) {
             </Review>
           </ReservationOptionInfo>
         </div>
+        <Calendar setDate={setDate} />
       </ContainerWrapper>
     </Container>
   );
