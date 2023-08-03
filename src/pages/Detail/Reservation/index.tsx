@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import Calendar from './Calender';
+import PersonOption from './PersonOption';
 
 interface ReservationProps {
   data: number;
@@ -28,6 +29,8 @@ function Reservation({ data }: ReservationProps) {
           </ReservationOptionInfo>
         </div>
         <Calendar setDate={setDate} />
+        <PersonOption />
+        <ReservationBtn>예약하기</ReservationBtn>
       </ContainerWrapper>
     </Container>
   );
@@ -67,6 +70,18 @@ const ReviewIcon = styled.img`
   width: 20px;
   height: 20px;
   margin-right: 7px;
+`;
+
+const ReservationBtn = styled.div`
+  width: 100%;
+  margin: 20px 10px 20px 0px;
+  padding: 30px 15px;
+  border-radius: 10px;
+  background-color: ${colors.PINK};
+  color: ${colors.WHITE};
+  ${font(18, 400)};
+  text-align: center;
+  cursor: pointer;
 `;
 
 export default Reservation;
