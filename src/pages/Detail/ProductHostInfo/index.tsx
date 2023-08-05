@@ -1,11 +1,11 @@
+import { useRecoilState } from 'recoil';
+import { detailListState } from 'recoil/roomState';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 
-interface HostDetailInfoProps {
-  detailList: HostDetailType;
-}
+function HostDetailInfo() {
+  const [detailList, setDetailList] = useRecoilState(detailListState);
 
-function HostDetailInfo({ detailList }: HostDetailInfoProps) {
   const { host_image, host, host_created } = detailList;
   const [year, month] = host_created.split('-');
 
