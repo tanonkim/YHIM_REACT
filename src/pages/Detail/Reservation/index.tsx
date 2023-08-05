@@ -16,6 +16,19 @@ function Reservation({ netPrice }: ReservationProps) {
   const [endDate, setEndDate] = useState<Date | null>(subDays(new Date(), -1)); // 예약 종료일
   const [guest, setGuest] = useState<number>(1); // 총 예약인원
 
+  const formatDate = (date: Date) => {
+    // 2023-2-2 => 2023-02-02
+    let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
+
   return (
     <Container>
       <ContainerWrapper>
