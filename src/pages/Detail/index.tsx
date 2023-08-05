@@ -42,7 +42,7 @@ function Detail() {
       <ProductImage />
       <Container>
         <ProductContainer>
-          <ProductInfo detailList={detailList} />
+          <ProductInfo />
           <ProductDescription>{description}</ProductDescription>
           <ProductAmenity room_amenities={roomAmenities} />
           <Notice noticeList={houseRules} />
