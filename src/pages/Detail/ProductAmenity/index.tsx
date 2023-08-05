@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { colors, flex, font } from 'styles';
+import { colors, font } from 'styles';
 import AmenityItem from './AmenityItem';
+import { useRecoilValue } from 'recoil';
+import { roomAmenitiesState } from 'recoil/roomState';
 
-interface ProductAmenityProps {
-  room_amenities: AmenityType[];
-}
+function ProductAmenity() {
+  const room_amenities = useRecoilValue(roomAmenitiesState);
 
-function ProductAmenity({ room_amenities }: ProductAmenityProps) {
   return (
     <Container>
       <Title>숙소 편의시설</Title>

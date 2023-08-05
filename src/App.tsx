@@ -1,10 +1,14 @@
 import React from 'react';
 import './styles/globals.css';
 import Router from './Router';
-import Layout from 'components/layout/Layout';
+import { RecoilRoot } from 'recoil';
 
 function App() {
-  return <Router />;
+  return (
+    <RecoilRoot>
+      <Router />
+    </RecoilRoot>
+  );
 }
 
 export default App;

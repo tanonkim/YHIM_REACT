@@ -1,13 +1,13 @@
 import { GoogleMap, MarkerF, useJsApiLoader } from '@react-google-maps/api';
 import React, { useCallback, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { detailListState } from 'recoil/roomState';
 import styled from 'styled-components';
 import { colors, font } from 'styles';
 
-interface ProductHeaderProps {
-  detailList: ProductDetailType;
-}
+function Map() {
+  const [detailList, setDetailList] = useRecoilState(detailListState);
 
-function Map({ detailList }: ProductHeaderProps) {
   const { latitute, longitute } = detailList;
 
   const containerStyle = {

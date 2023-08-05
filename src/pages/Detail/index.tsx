@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProductImage from './ProductImage';
@@ -10,35 +10,12 @@ import Notice from './ProductNotice';
 import Map from './ProductMap';
 import HostDetailInfo from './ProductHostInfo';
 import Reservation from './Reservation';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { descriptionState, detailListState } from 'recoil/roomState';
 
 function Detail() {
-  const [detailList, setDetailList] = useState<ProductDetailType>({
-    name: '',
-    description: '',
-    district: '',
-    neighberhood: '',
-    price: 0,
-    address: '',
-    guests: 0,
-    beds: 0,
-    bedrooms: 0,
-    baths: 0,
-    latitute: 0,
-    longitute: 0,
-    host: '',
-    host_image: '',
-    host_created: '',
-    room_images_url: [],
-    check_in: [],
-    room_amenities: [],
-    check_in_time: '',
-    check_out_time: '',
-    house_rules: [],
-    category: '',
-  });
-
-  const { room_images_url, description, room_amenities, house_rules, price } =
-    detailList;
+  const [detailList, setDetailList] = useRecoilState(detailListState);
+  const description = useRecoilValue(descriptionState);
 
   const params = useParams();
 
@@ -52,21 +29,21 @@ function Detail() {
 
   return (
     <>
-      <Header detailList={detailList} />
-      <ProductImage room_images_url={room_images_url} />
+      <Header />
+      <ProductImage />
       <Container>
         <ProductContainer>
-          <ProductInfo detailList={detailList} />
+          <ProductInfo />
           <ProductDescription>{description}</ProductDescription>
-          <ProductAmenity room_amenities={room_amenities} />
-          <Notice noticeList={house_rules} />
+          <ProductAmenity />
+          <Notice />
         </ProductContainer>
         <ReservationContainer>
-          <Reservation netPrice={price} />
+          <Reservation />
         </ReservationContainer>
       </Container>
-      <Map detailList={detailList} />
-      <HostDetailInfo detailList={detailList} />
+      <Map />
+      <HostDetailInfo />
     </>
   );
 }

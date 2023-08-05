@@ -1,11 +1,11 @@
+import { useRecoilState } from 'recoil';
+import { detailListState } from 'recoil/roomState';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 
-interface ProductInfoProps {
-  detailList: ProductDetailType;
-}
+function ProductInfo() {
+  const [detailList, setDetailList] = useRecoilState(detailListState);
 
-function ProductInfo({ detailList }: ProductInfoProps) {
   const {
     host,
     category,
