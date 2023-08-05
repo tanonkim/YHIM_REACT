@@ -14,6 +14,7 @@ function Reservation({ netPrice }: ReservationProps) {
   const [date, setDate] = useState<number>(1);
   const [startDate, setStartDate] = useState<Date | null>(new Date()); // 예약 시작일
   const [endDate, setEndDate] = useState<Date | null>(subDays(new Date(), -1)); // 예약 종료일
+  const [guest, setGuest] = useState<number>(1); // 총 예약인원
 
   return (
     <Container>
@@ -37,7 +38,7 @@ function Reservation({ netPrice }: ReservationProps) {
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
-        <PersonOption />
+        <PersonOption setGuest={setGuest} />
         <ReservationBtn>예약하기</ReservationBtn>
         <Price netPrice={netPrice} date={date} />
       </ContainerWrapper>

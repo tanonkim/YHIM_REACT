@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import CountClient from './CountClient';
 
-function PersonOption() {
+interface PersonOptionProps {
+  setGuest: Function;
+}
+
+function PersonOption(props: PersonOptionProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [guest, setGuest] = useState(1);
 
@@ -12,7 +16,7 @@ function PersonOption() {
   };
 
   useEffect(() => {
-    setGuest(guest);
+    props.setGuest(guest);
   }, [guest]);
 
   return (
