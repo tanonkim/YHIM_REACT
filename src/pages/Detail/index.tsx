@@ -9,7 +9,7 @@ import ProductAmenity from './ProductAmenity';
 import Notice from './ProductNotice';
 import Map from './ProductMap';
 import HostDetailInfo from './ProductHostInfo';
-import Reservation from './Reservation';
+import Reservation from '../Reservation';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { descriptionState, detailListState } from 'recoil/roomState';
 
