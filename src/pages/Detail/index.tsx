@@ -17,12 +17,10 @@ import {
   houseRulesState,
   priceState,
   roomAmenitiesState,
-  roomImagesState,
 } from 'recoil/roomState';
 
 function Detail() {
   const [detailList, setDetailList] = useRecoilState(detailListState);
-  const roomImages = useRecoilValue(roomImagesState);
   const description = useRecoilValue(descriptionState);
   const roomAmenities = useRecoilValue(roomAmenitiesState);
   const houseRules = useRecoilValue(houseRulesState);
@@ -41,7 +39,7 @@ function Detail() {
   return (
     <>
       <Header />
-      <ProductImage room_images_url={roomImages} />
+      <ProductImage />
       <Container>
         <ProductContainer>
           <ProductInfo detailList={detailList} />

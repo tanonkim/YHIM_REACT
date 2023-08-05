@@ -1,10 +1,10 @@
+import { useRecoilValue } from 'recoil';
+import { roomImagesState } from 'recoil/roomState';
 import styled from 'styled-components';
 
-interface ProductImageProps {
-  room_images_url: string[];
-}
+function ProductImage() {
+  const room_images_url = useRecoilValue(roomImagesState);
 
-function ProductImage({ room_images_url }: ProductImageProps) {
   return (
     <ProductImageList>
       <ProductLeftImg alt="room-left-image" src={room_images_url[0]} />
