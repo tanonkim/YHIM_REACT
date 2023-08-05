@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, flex, font } from 'styles';
+import { colors } from 'styles';
 import NoticeContent from './NoticeContent';
 import { useRecoilValue } from 'recoil';
 import { houseRulesState } from 'recoil/roomState';
