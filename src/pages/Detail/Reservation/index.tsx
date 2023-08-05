@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { subDays } from 'date-fns';
 import { colors, flex, font } from 'styles';
 import Calendar from './Calender';
 import PersonOption from './PersonOption';
 import Price from './Price';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getToken } from 'utils/jwt';
 
 interface ReservationProps {
   netPrice: number;
@@ -27,6 +29,37 @@ function Reservation({ netPrice }: ReservationProps) {
     if (day.length < 2) day = '0' + day;
 
     return [year, month, day].join('-');
+  };
+
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const goReservation = async () => {
+    const token = getToken();
+
+    if (!token) {
+      alert('로그인을 해주세요.');
+      return navigate('/signin');
+    }
+    if (token) {
+      const res = await fetch(
+        `${process.env.REACT_APP_API_ADDRESS}/rooms/${params.id}/reservations/`,
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            Authorization: token,
+          },
+          body: JSON.stringify({
+            check_in: startDate ? formatDate(startDate) : null,
+            check_out: endDate ? formatDate(endDate) : null,
+            guests: guest,
+          }),
+        },
+      );
+
+      const { message } = await res.json();
+    }
   };
 
   return (
@@ -52,7 +85,7 @@ function Reservation({ netPrice }: ReservationProps) {
           setEndDate={setEndDate}
         />
         <PersonOption setGuest={setGuest} />
-        <ReservationBtn>예약하기</ReservationBtn>
+        <ReservationBtn onClick={goReservation}>예약하기</ReservationBtn>
         <Price netPrice={netPrice} date={date} />
       </ContainerWrapper>
     </Container>
