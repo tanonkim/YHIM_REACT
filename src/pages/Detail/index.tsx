@@ -40,7 +40,7 @@ function Detail() {
 
   return (
     <>
-      <Header detailList={detailList} />
+      <Header />
       <ProductImage room_images_url={roomImages} />
       <Container>
         <ProductContainer>

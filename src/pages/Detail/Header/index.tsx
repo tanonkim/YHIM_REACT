@@ -1,13 +1,12 @@
+import { useRecoilValue } from 'recoil';
+import { headerInfoSelector } from 'recoil/headerState';
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 
-interface ProductHeaderProps {
-  detailList: ProductDetailType;
-}
+function Header() {
+  const detailList = useRecoilValue(headerInfoSelector);
 
-function Header({ detailList }: ProductHeaderProps) {
   const { name, district, neighberhood } = detailList;
-
   return (
     <>
       <ProductTitle>{name}</ProductTitle>
