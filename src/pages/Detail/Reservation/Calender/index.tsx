@@ -15,7 +15,7 @@ interface CalendarProps {
 
 function Calendar(props: CalendarProps) {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
-  const [endDate, setEndDate] = useState<Date | null>(new Date());
+  const [endDate, setEndDate] = useState<Date | null>(subDays(new Date(), -1));
   const [totalDate, setTotalDate] = useState(1);
 
   useEffect(() => {
