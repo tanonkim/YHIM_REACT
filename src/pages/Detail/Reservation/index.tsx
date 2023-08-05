@@ -7,16 +7,16 @@ import PersonOption from './PersonOption';
 import Price from './Price';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getToken } from 'utils/jwt';
+import { useRecoilValue } from 'recoil';
+import { priceState } from 'recoil/roomState';
 
-interface ReservationProps {
-  netPrice: number;
-}
-
-function Reservation({ netPrice }: ReservationProps) {
+function Reservation() {
   const [date, setDate] = useState<number>(1);
   const [startDate, setStartDate] = useState<Date | null>(new Date()); // 예약 시작일
   const [endDate, setEndDate] = useState<Date | null>(subDays(new Date(), -1)); // 예약 종료일
   const [guest, setGuest] = useState<number>(1); // 총 예약인원
+
+  const netPrice = useRecoilValue(priceState);
 
   const formatDate = (date: Date) => {
     // 2023-2-2 => 2023-02-02

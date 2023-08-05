@@ -11,18 +11,11 @@ import Map from './ProductMap';
 import HostDetailInfo from './ProductHostInfo';
 import Reservation from './Reservation';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  descriptionState,
-  detailListState,
-  houseRulesState,
-  priceState,
-  roomAmenitiesState,
-} from 'recoil/roomState';
+import { descriptionState, detailListState } from 'recoil/roomState';
 
 function Detail() {
   const [detailList, setDetailList] = useRecoilState(detailListState);
   const description = useRecoilValue(descriptionState);
-  const netPrice = useRecoilValue(priceState);
 
   const params = useParams();
 
@@ -46,7 +39,7 @@ function Detail() {
           <Notice />
         </ProductContainer>
         <ReservationContainer>
-          <Reservation netPrice={netPrice} />
+          <Reservation />
         </ReservationContainer>
       </Container>
       <Map detailList={detailList} />
