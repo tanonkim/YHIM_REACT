@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { subDays } from 'date-fns';
 import { colors, flex, font } from 'styles';
 import Calendar from './Calender';
 import PersonOption from './PersonOption';
@@ -11,6 +12,8 @@ interface ReservationProps {
 
 function Reservation({ netPrice }: ReservationProps) {
   const [date, setDate] = useState<number>(1);
+  const [startDate, setStartDate] = useState<Date | null>(new Date()); // 예약 시작일
+  const [endDate, setEndDate] = useState<Date | null>(subDays(new Date(), -1)); // 예약 종료일
 
   return (
     <Container>
@@ -29,7 +32,11 @@ function Reservation({ netPrice }: ReservationProps) {
             </Review>
           </ReservationOptionInfo>
         </div>
-        <Calendar setDate={setDate} />
+        <Calendar
+          setDate={setDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+        />
         <PersonOption />
         <ReservationBtn>예약하기</ReservationBtn>
         <Price netPrice={netPrice} date={date} />

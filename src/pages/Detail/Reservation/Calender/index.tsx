@@ -9,9 +9,11 @@ import './calendar.css';
 
 interface CalendarProps {
   setDate: Function;
+  setStartDate: Function;
+  setEndDate: Function;
 }
 
-function Calendar({ setDate }: CalendarProps) {
+function Calendar(props: CalendarProps) {
   const [startDate, setStartDate] = useState<Date | null>(new Date());
   const [endDate, setEndDate] = useState<Date | null>(new Date());
   const [totalDate, setTotalDate] = useState(1);
@@ -19,9 +21,9 @@ function Calendar({ setDate }: CalendarProps) {
   useEffect(() => {
     if (startDate !== null && endDate !== null) {
       const date = endDate.getTime() - startDate.getTime();
-      setTotalDate(setDate(Math.ceil(date / 86400000)));
-      setStartDate(startDate);
-      setEndDate(endDate);
+      setTotalDate(props.setDate(Math.ceil(date / 86400000)));
+      props.setStartDate(startDate);
+      props.setEndDate(endDate);
     }
   }, [startDate, endDate]);
 
