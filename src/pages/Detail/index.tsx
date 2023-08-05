@@ -22,7 +22,6 @@ import {
 function Detail() {
   const [detailList, setDetailList] = useRecoilState(detailListState);
   const description = useRecoilValue(descriptionState);
-  const houseRules = useRecoilValue(houseRulesState);
   const netPrice = useRecoilValue(priceState);
 
   const params = useParams();
@@ -44,7 +43,7 @@ function Detail() {
           <ProductInfo />
           <ProductDescription>{description}</ProductDescription>
           <ProductAmenity />
-          <Notice noticeList={houseRules} />
+          <Notice />
         </ProductContainer>
         <ReservationContainer>
           <Reservation netPrice={netPrice} />

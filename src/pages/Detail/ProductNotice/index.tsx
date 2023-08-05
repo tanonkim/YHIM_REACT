@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { colors, flex, font } from 'styles';
 import NoticeContent from './NoticeContent';
+import { useRecoilValue } from 'recoil';
+import { houseRulesState } from 'recoil/roomState';
 
-interface NoticeProps {
-  noticeList: NoticeType[];
-}
+function Notice() {
+  const noticeList = useRecoilValue(houseRulesState);
 
-function Notice({ noticeList }: NoticeProps) {
   return (
     <Container>
       {noticeList.map((data, i) => (
