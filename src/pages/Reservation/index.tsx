@@ -76,10 +76,10 @@ function Reservation() {
         return alert('예약일정이 없습니다. 호스트에게 연락해주세요.');
       }
       if (message === 'INAVAILABLE_DATE') {
-        return alert('실행초과 오류입니다. 반복될 경우 관리자에게 알려주세요.');
+        return alert('불가능한 예약일정입니다. 호스트에게 연락해주세요.');
       }
       if (message === 'VALUE_ERROR') {
-        return alert('올바른 값을 넣어주세요.');
+        return alert('날짜 및 인원을 선택해주세요.');
       }
       if (message === 'SUCCESS') {
         return alert('예약이 완료되었습니다.');
