@@ -59,6 +59,40 @@ function Reservation({ netPrice }: ReservationProps) {
       );
 
       const { message } = await res.json();
+
+      if (message === 'NO_WAY_TO_BOOK_BEFORE_TODAY') {
+        return alert('정확한 시작 일정을 선택해주세요.');
+      }
+      if (message === 'INVALID_BOOKING_DATE') {
+        return alert('정확한 일정을 선택해주세요.');
+      }
+      if (message === 'DOUBLE_BOOKED_FOR_THE_DAY') {
+        return alert('중복예약은 불가능합니다.');
+      }
+      if (message === 'EXCESSIVE_NUMBER_OF_PEOPLE') {
+        return alert('정원초과입니다.');
+      }
+      if (message === 'RESERVATION_NOT_AVAILABLE') {
+        return alert('예약일정이 없습니다. 호스트에게 연락해주세요.');
+      }
+      if (message === 'INAVAILABLE_DATE') {
+        return alert('실행초과 오류입니다. 반복될 경우 관리자에게 알려주세요.');
+      }
+      if (message === 'VALUE_ERROR') {
+        return alert('올바른 값을 넣어주세요.');
+      }
+      if (message === 'SUCCESS') {
+        return alert('예약이 완료되었습니다.');
+      }
+      if (
+        message === 'NO AUTHORIZATION IN HEADER' ||
+        'INVALID_USER' ||
+        'EXPIRED_TOKEN' ||
+        'INVALID_TOKEN'
+      ) {
+        alert('로그인이 필요합니다.');
+        return navigate('/signin');
+      }
     }
   };
 
