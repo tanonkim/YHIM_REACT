@@ -42,7 +42,7 @@ function Detail() {
           <Reservation />
         </ReservationContainer>
       </Container>
-      <Map detailList={detailList} />
+      <Map />
       <HostDetailInfo detailList={detailList} />
     </>
   );
