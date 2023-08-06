@@ -10,7 +10,7 @@ function Notice() {
   return (
     <Container>
       {noticeList.map((data, i) => (
-        <NoticeContent key={`notice-${i}}`} data={data} />
+        <NoticeContent key={`noticeList-${i}}`} data={data} />
       ))}
     </Container>
   );
